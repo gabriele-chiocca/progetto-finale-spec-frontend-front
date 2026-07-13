@@ -1,32 +1,26 @@
+import { NavLink } from 'react-router-dom';
+
 function Header() {
+  const getLinkClass = ({ isActive }) => `nav-link ${isActive ? `active` : ``}`;
+
   return (
     <div className="container">
       <header className="d-flex justify-content-center py-3">
-        <ul className="nav nav-pills">
+        <ul className="nav nav-pills gap-2">
           <li className="nav-item">
-            <a href="#" className="nav-link active" aria-current="page">
+            <NavLink to="/" className={getLinkClass} aria-current="page">
               Home
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
-              Features
-            </a>
+            <NavLink to="/favorites" className={getLinkClass}>
+              Preferiti
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
-              Pricing
-            </a>
-          </li>
-          <li className="nav-item">
-            <a href="#" className="nav-link">
-              FAQs
-            </a>
-          </li>
-          <li className="nav-item">
-            <a href="#" className="nav-link">
-              About
-            </a>
+            <NavLink to="/compare" className={getLinkClass}>
+              Confronta
+            </NavLink>
           </li>
         </ul>
       </header>

@@ -16,10 +16,10 @@ function App() {
 
       <main>
         <Routes>
-          <Route path="/" element={Home} />
-          <Route path="/anime/:id" element={AnimeDetail} />
-          <Route path="/favorites" element={Favorites} />
-          <Route path="/compare" element={Compare} />
+          <Route path="/" element={<Home />} />
+          <Route path="/anime/:id" element={<AnimeDetail />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/compare" element={<Compare />} />
         </Routes>
       </main>
 
