@@ -7,6 +7,8 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  const [search, setSearch] = useState('');
+
   useEffect(() => {
     async function loadAnimes() {
       try {
@@ -30,11 +32,29 @@ function Home() {
     return <p>{error}</p>;
   }
 
+  const filteredAnimes = animes.filter((anime) => {
+    const formattedTitleAnime = anime.title.toLowerCase();
+
+    const formattedInput = search.toLowerCase();
+
+    return formattedTitleAnime.includes(formattedInput);
+  });
+
   return (
     <div className="container py-4">
       <h1 className="mb-4">Anime</h1>
+      <div className="search-container mb-4">
+        <input
+          type="text"
+          className="form-control search-input"
+          placeholder="Search..."
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+        />
+        <i className="fas fa-search search-icon"></i>
+      </div>
       <div className="row g-4">
-        {animes.map((anime) => {
+        {filteredAnimes.map((anime) => {
           return <AnimeCard anime={anime} key={anime.id} />;
         })}
       </div>
