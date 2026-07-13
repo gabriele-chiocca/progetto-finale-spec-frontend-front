@@ -21,3 +21,11 @@ export async function getAnimesById(id) {
 
   return data.anime;
 }
+
+export async function getAllAnimeDetails() {
+  const animeList = await getAnimes();
+
+  const promises = animeList.map((anime) => getAnimesById(anime.id));
+
+  return Promise.all(promises);
+}
