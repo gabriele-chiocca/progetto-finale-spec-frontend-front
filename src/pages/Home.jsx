@@ -8,6 +8,7 @@ function Home() {
   const [error, setError] = useState('');
 
   const [search, setSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
     async function loadAnimes() {
@@ -37,7 +38,12 @@ function Home() {
 
     const formattedInput = search.toLowerCase();
 
-    return formattedTitleAnime.includes(formattedInput);
+    const matchesTitle = formattedTitleAnime.includes(formattedInput);
+
+    const matchesCategory =
+      selectedCategory === '' || anime.category === selectedCategory;
+
+    return matchesTitle && matchesCategory;
   });
 
   return (
@@ -52,6 +58,24 @@ function Home() {
           value={search}
         />
         <i className="fas fa-search search-icon"></i>
+      </div>
+
+      <div className="mb-4">
+        <select
+          className="form-select"
+          aria-label="Default select example"
+          placeholder="Scegli la categoria"
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          value={selectedCategory}
+        >
+          <option value="">Categorie</option>
+          <option value="Shonen">Shonen</option>
+          <option value="Psychological">Psychological</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Seinen">Seinen</option>
+          <option value="Isekai">Isekai</option>
+          <option value="Sports">Sports</option>
+        </select>
       </div>
       <div className="row g-4">
         {filteredAnimes.map((anime) => {
