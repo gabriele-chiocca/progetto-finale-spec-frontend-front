@@ -29,8 +29,20 @@ export function FavoritesProvider({ children }) {
     );
   }
 
+  function isFavorite(id) {
+    return favoriteIds.includes(id);
+  }
+
   return (
-    <FavoritesContext.Provider value={{ favoriteIds, setFavoriteIds }}>
+    <FavoritesContext.Provider
+      value={{
+        favoriteIds,
+        setFavoriteIds,
+        addToFavorite,
+        removeFavorite,
+        isFavorite,
+      }}
+    >
       {children}
     </FavoritesContext.Provider>
   );

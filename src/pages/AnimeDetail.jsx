@@ -5,12 +5,16 @@ import { getAnimesById } from '../services/animeApi';
 
 import RatingStars from '../components/RatingStars';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { FavoritesContext } from '../context/FavoritesContext';
 
 function AnimeDetail() {
   const [anime, setAnime] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const { id } = useParams();
+  const { favoriteIds, addToFavorite, removeFavorite, isFavorite } =
+    useContext(FavoritesContext);
 
   useEffect(() => {
     async function loadAnime() {
@@ -94,10 +98,23 @@ function AnimeDetail() {
                   </div>
                 </div>
                 <div className="d-flex flex-wrap gap-2 mt-5">
-                  <button className="btn btn-primary">
-                    <i className="bi bi-heart me-2"></i>
-                    Add to Favorites
-                  </button>
+                  {isFavorite(anime.id) ? (
+                    <button
+                      onClick={() => removeFavorite(anime.id)}
+                      className="btn btn-danger"
+                    >
+                      <i className="bi bi-heart me-2"></i>
+                      Removes from Favorites
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => addToFavorite(anime.id)}
+                      className="btn btn-primary"
+                    >
+                      <i className="bi bi-heart me-2"></i>
+                      Add to Favorites
+                    </button>
+                  )}
 
                   <button className="btn btn-secondary ms-2">
                     <i className="bi bi-columns-gap me-2"></i>
