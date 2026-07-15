@@ -21,6 +21,14 @@ export function FavoritesProvider({ children }) {
     setFavoriteIds([...favoriteIds, id]);
   }
 
+  function removeFavorite(id) {
+    setFavoriteIds(
+      favoriteIds.filter((singleId) => {
+        return id !== singleId;
+      }),
+    );
+  }
+
   return (
     <FavoritesContext.Provider value={{ favoriteIds, setFavoriteIds }}>
       {children}
