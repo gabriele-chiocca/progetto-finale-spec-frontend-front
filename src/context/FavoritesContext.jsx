@@ -17,6 +17,10 @@ export function FavoritesProvider({ children }) {
     localStorage.setItem('favoriteIds', JSON.stringify(favoriteIds));
   }, [favoriteIds]);
 
+  function addToFavorite(id) {
+    setFavoriteIds([...favoriteIds, id]);
+  }
+
   return (
     <FavoritesContext.Provider value={{ favoriteIds, setFavoriteIds }}>
       {children}
