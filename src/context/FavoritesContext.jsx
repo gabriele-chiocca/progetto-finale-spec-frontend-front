@@ -4,9 +4,11 @@ export const FavoritesContext = createContext();
 
 export function FavoritesProvider({ children }) {
   const [favoriteIds, setFavoriteIds] = useState(() => {
+    //Controllo se nel local storage sono già presenti dei favorite
     const savedFavorites = localStorage.getItem(`favoriteIds`);
 
     if (savedFavorites === null) {
+      // Se non ci sono ritorna un array vuoto
       return [];
     }
 
@@ -14,6 +16,7 @@ export function FavoritesProvider({ children }) {
   });
 
   useEffect(() => {
+    // UseEffect che si aggiorna ad ogni cambiamento su favoriteIds, aggiornando con il setItem
     localStorage.setItem('favoriteIds', JSON.stringify(favoriteIds));
   }, [favoriteIds]);
 

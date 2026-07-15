@@ -103,8 +103,8 @@ function AnimeDetail() {
                       onClick={() => removeFavorite(anime.id)}
                       className="btn btn-danger"
                     >
-                      <i className="bi bi-heart me-2"></i>
-                      Removes from Favorites
+                      <i className="bi bi-heart-fill me-2"></i>
+                      Remove from Favorites
                     </button>
                   ) : (
                     <button
