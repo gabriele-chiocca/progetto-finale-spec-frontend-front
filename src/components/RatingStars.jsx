@@ -7,7 +7,11 @@ function RatingStars({ rating }) {
         return (
           <i
             key={index}
-            className={index < fullStars ? `bi bi-star-fill` : `bi bi-star`}
+            className={
+              index < fullStars
+                ? `bi bi-star-fill text-warning`
+                : `bi bi-star text-warning`
+            }
           ></i>
         );
       })}

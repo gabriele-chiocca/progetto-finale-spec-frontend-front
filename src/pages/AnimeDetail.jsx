@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 
 import { getAnimesById } from '../services/animeApi';
 
+import RatingStars from '../components/RatingStars';
 import { Link } from 'react-router-dom';
 
 function AnimeDetail() {
@@ -37,61 +38,79 @@ function AnimeDetail() {
 
   return (
     <div className="container py-4">
+      <div>
+        <Link className="h6 text-primary" to={'/'}>
+          <i className="bi bi-arrow-left-short h2"></i>
+        </Link>
+
+        <div>
+          <h1>{anime.title}</h1>
+          <RatingStars rating={anime.rating}></RatingStars>
+        </div>
+      </div>
+
+      <div className="card shadow-sm mt-4">
+        <div className="card-body">
+          <div className="row g-4">
+            <div className="col-12 col-lg-6">
+              <img
+                className="detail-img rounded"
+                src={anime.image}
+                alt={anime.title}
+              />
+            </div>
+            <div className="col-12 col-lg-6 gx-4 d-flex flex-column justify-content-center">
+              <div className="ps-lg-4">
+                <div className="row g-4">
+                  <h2>Info</h2>
+                  <div className="col-12 col-sm-6">
+                    <p className="text-secondary mb-1">Studios</p>
+                    <p className="fw-semibold mb-0">{anime.studio}</p>
+                  </div>
+
+                  <div className="col-12 col-sm-6">
+                    <p className="text-secondary mb-1">Category</p>
+                    <p className="fw-semibold mb-0">{anime.category}</p>
+                  </div>
+
+                  <div className="col-12 col-sm-6">
+                    <p className="text-secondary mb-1">Episodes</p>
+                    <p className="fw-semibold mb-0">{anime.episodes}</p>
+                  </div>
+
+                  <div className="col-12 col-sm-6">
+                    <p className="text-secondary mb-1">Seasons</p>
+                    <p className="fw-semibold mb-0">{anime.seasons}</p>
+                  </div>
+
+                  <div className="col-12 col-sm-6">
+                    <p className="text-secondary mb-1">Status</p>
+                    <p className="fw-semibold mb-0">{anime.status}</p>
+                  </div>
+
+                  <div className="col-12 col-sm-6">
+                    <p className="text-secondary mb-1">Year</p>
+                    <p className="fw-semibold mb-0">{anime.releaseYear}</p>
+                  </div>
+                </div>
+                <div className="d-flex flex-wrap gap-2 mt-5">
+                  <button className="btn btn-primary">
+                    <i className="bi bi-heart me-2"></i>
+                    Add to Favourites
+                  </button>
+
+                  <button className="btn btn-secondary ms-2">
+                    <i className="bi bi-columns-gap me-2"></i>
+                    Compare
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="row">
-        <div className="col-12 col-lg-5">
-          <div>
-            <Link className="h6 text-secondary" to={'/'}>
-              <i className="bi bi-arrow-left-short h2"></i>
-            </Link>
-
-            <div>
-              <h1>{anime.title}</h1>
-            </div>
-            <img
-              className="img-fluid w-100 mt-3"
-              src={anime.image}
-              alt={anime.title}
-            />
-          </div>
-        </div>
-
-        <div className="col-12 col-lg-7">
-          <div>
-            <div className="my-3">
-              <button className="btn btn-primary">Aggiungi ai preferiti</button>
-              <button className="btn btn-secondary ms-2">Confronta</button>
-            </div>
-
-            <div>
-              <h2 className="h4 my-4">General Info</h2>
-              <div>
-                <h3 className="h5">Studio</h3>
-                <p>{anime.studio}</p>
-              </div>
-
-              <div>
-                <h3 className="h5">Rating</h3>
-                <p>{anime.rating}</p>
-              </div>
-
-              <div>
-                <h3 className="h5">Total Episodes</h3>
-                <p>{anime.episodes}</p>
-              </div>
-
-              <div>
-                <h3 className="h5">Total Seasons</h3>
-                <p>{anime.seasons}</p>
-              </div>
-
-              <div>
-                <h3 className="h5">Description</h3>
-                <p>{anime.description}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className="col-12 gy-5">
           <h2 className="mb-3">Trailer</h2>
           <iframe
