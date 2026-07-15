@@ -2,7 +2,8 @@ import { useContext } from 'react';
 import { FavoritesContext } from '../context/FavoritesContext';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getAnimesById } from '../services/animeApi';
+import { getAllAnimeDetails } from '../services/animeApi';
+import AnimeCard from '../components/AnimeCard';
 
 function Favorites() {
   const { favoriteIds, addToFavorite, removeFavorite, isFavorite } =
@@ -10,6 +11,21 @@ function Favorites() {
 
   const [animes, setAnimes] = useState([]);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    async function getAnime() {
+      try {
+        const data = await getAllAnimeDetails();
+        console.log(data);
+        setAnimes(data);
+      } catch (error) {
+        console.error(error);
+        setError(error.message);
+      }
+    }
+
+    getAnime();
+  }, [favoriteIds]);
 
   if (favoriteIds.length === 0) {
     return (
@@ -25,28 +41,16 @@ function Favorites() {
     );
   }
 
-  useEffect(() => {
-    async function loadSingleAnime() {
-      const data = await getAnimesById(favoriteIds);
-      console.log(data);
-      setAnimes(data);
-
-      try {
-      } catch (error) {
-        console.error(error);
-        setError(error.message);
-      }
-    }
-
-    loadSingleAnime();
-  }, [favoriteIds]);
+  const filteredAnimes = animes.filter((anime) => {
+    return favoriteIds.includes(anime.id);
+  });
 
   return (
     <div className="container">
-      <h1 className="text-center">Favorites Anime</h1>
+      <h1 className="text-center my-4">Favorites Anime </h1>
 
       <div className="row">
-        {animes.map((anime) => {
+        {filteredAnimes.map((anime) => {
           return <AnimeCard anime={anime} key={anime.id} />;
         })}
       </div>

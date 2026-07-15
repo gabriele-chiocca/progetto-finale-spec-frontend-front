@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { FavoritesContext } from '../context/FavoritesContext';
+import RatingStars from './RatingStars';
 
 function AnimeCard({ anime }) {
   const { favoriteIds, addToFavorite, removeFavorite, isFavorite } =
@@ -18,7 +19,7 @@ function AnimeCard({ anime }) {
         <div className="card-body d-flex flex-column">
           <h2 className="h5">{anime.title}</h2>
           <p>{anime.category}</p>
-          <p>Rating: {anime.rating}</p>
+          <RatingStars rating={anime.rating}></RatingStars>
           <p>{anime.description}</p>
 
           <div className="d-flex flex-wrap gap-2  mt-auto">
