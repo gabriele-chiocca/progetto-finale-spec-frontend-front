@@ -96,7 +96,7 @@ function AnimeDetail() {
                 <div className="d-flex flex-wrap gap-2 mt-5">
                   <button className="btn btn-primary">
                     <i className="bi bi-heart me-2"></i>
-                    Add to Favourites
+                    Add to Favorites
                   </button>
 
                   <button className="btn btn-secondary ms-2">

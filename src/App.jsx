@@ -8,23 +8,26 @@ import Home from './pages/Home';
 import AnimeDetail from './pages/AnimeDetail';
 import Favorites from './pages/Favorites';
 import Compare from './pages/Compare';
+import { FavoritesProvider } from './context/FavoritesContext';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
+    <FavoritesProvider>
+      <BrowserRouter>
+        <Header />
 
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/anime/:id" element={<AnimeDetail />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/compare" element={<Compare />} />
-        </Routes>
-      </main>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/anime/:id" element={<AnimeDetail />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/compare" element={<Compare />} />
+          </Routes>
+        </main>
 
-      <Footer />
-    </BrowserRouter>
+        <Footer />
+      </BrowserRouter>
+    </FavoritesProvider>
   );
 }
 
