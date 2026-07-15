@@ -43,6 +43,10 @@ function AnimeDetail() {
             <Link className="h6 text-secondary" to={'/'}>
               <i className="bi bi-arrow-left-short h2"></i>
             </Link>
+
+            <div>
+              <h1>{anime.title}</h1>
+            </div>
             <img
               className="img-fluid w-100 mt-3"
               src={anime.image}
@@ -53,14 +57,13 @@ function AnimeDetail() {
 
         <div className="col-12 col-lg-7">
           <div>
-            <h1>{anime.title}</h1>
             <div className="my-3">
               <button className="btn btn-primary">Aggiungi ai preferiti</button>
               <button className="btn btn-secondary ms-2">Confronta</button>
             </div>
 
             <div>
-              <h2 className="h4">General Info</h2>
+              <h2 className="h4 my-4">General Info</h2>
               <div>
                 <h3 className="h5">Studio</h3>
                 <p>{anime.studio}</p>
