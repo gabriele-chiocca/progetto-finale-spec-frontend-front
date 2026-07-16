@@ -8,8 +8,8 @@ function AnimeCard({ anime }) {
   const { favoriteIds, addToFavorite, removeFavorite, isFavorite } =
     useContext(FavoritesContext);
 
-    const 
-
+  const { compareIds, addToCompare, removeCompare, isCompared } =
+    useContext(CompareContext);
 
   return (
     <div className="col-12 col-md-6 col-lg-4">
@@ -26,28 +26,52 @@ function AnimeCard({ anime }) {
           <RatingStars rating={anime.rating}></RatingStars>
           <p>{anime.description}</p>
 
-          <div className="d-flex flex-wrap gap-2  mt-auto">
-            <Link to={`/anime/${anime.id}`} className="btn btn-dark">
-              View Details
-            </Link>
+          <div className="row g-3 mt-auto">
+            <div className="col-12">
+              <Link to={`/anime/${anime.id}`} className="btn btn-dark">
+                View Details
+              </Link>
+            </div>
 
-            {isFavorite(anime.id) ? (
-              <button
-                onClick={() => removeFavorite(anime.id)}
-                className="btn btn-danger"
-              >
-                <i className="bi bi-heart-fill me-2"></i>
-                Remove from Favorites
-              </button>
-            ) : (
-              <button
-                onClick={() => addToFavorite(anime.id)}
-                className="btn btn-primary"
-              >
-                <i className="bi bi-heart me-2"></i>
-                Add to Favorites
-              </button>
-            )}
+            <div className="col-6">
+              {isFavorite(anime.id) ? (
+                <button
+                  onClick={() => removeFavorite(anime.id)}
+                  className="btn btn-danger"
+                >
+                  <i className="bi bi-heart-fill me-2"></i>
+                  Remove from Favorites
+                </button>
+              ) : (
+                <button
+                  onClick={() => addToFavorite(anime.id)}
+                  className="btn btn-primary"
+                >
+                  <i className="bi bi-heart me-2"></i>
+                  Add to Favorites
+                </button>
+              )}
+            </div>
+
+            <div className="col-6">
+              {isCompared(anime.id) ? (
+                <button
+                  onClick={() => removeCompare(anime.id)}
+                  className="btn btn-danger"
+                >
+                  <i className="bi bi bi-columns-gap me-2"></i>
+                  Remove from Compare
+                </button>
+              ) : (
+                <button
+                  onClick={() => addToCompare(anime.id)}
+                  className="btn btn-info"
+                >
+                  <i className="bi bi bi-columns-gap me-2"></i>
+                  Add to Compare
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
