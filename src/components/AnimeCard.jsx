@@ -26,9 +26,10 @@ function AnimeCard({ anime }) {
           <RatingStars rating={anime.rating}></RatingStars>
           <p>{anime.description}</p>
 
-          <div className="row g-3 mt-auto">
+          <div className="row g-2 mt-auto">
             <div className="col-12">
-              <Link to={`/anime/${anime.id}`} className="btn btn-dark">
+              <Link to={`/anime/${anime.id}`} className="btn btn-dark w-100">
+                <i className="bi bi-eye me-2"></i>
                 View Details
               </Link>
             </div>
@@ -37,18 +38,18 @@ function AnimeCard({ anime }) {
               {isFavorite(anime.id) ? (
                 <button
                   onClick={() => removeFavorite(anime.id)}
-                  className="btn btn-danger"
+                  className="btn btn-danger w-100"
                 >
                   <i className="bi bi-heart-fill me-2"></i>
-                  Remove from Favorites
+                  Remove Favorites
                 </button>
               ) : (
                 <button
                   onClick={() => addToFavorite(anime.id)}
-                  className="btn btn-primary"
+                  className="btn btn-primary w-100"
                 >
                   <i className="bi bi-heart me-2"></i>
-                  Add to Favorites
+                  Add Favorites
                 </button>
               )}
             </div>
@@ -57,18 +58,18 @@ function AnimeCard({ anime }) {
               {isCompared(anime.id) ? (
                 <button
                   onClick={() => removeCompare(anime.id)}
-                  className="btn btn-danger"
+                  className="btn btn-danger w-100"
                 >
-                  <i className="bi bi bi-columns-gap me-2"></i>
-                  Remove from Compare
+                  <i className=" bi bi-columns-gap me-2"></i>
+                  Remove Compare
                 </button>
               ) : (
                 <button
                   onClick={() => addToCompare(anime.id)}
-                  className="btn btn-info"
+                  className="btn btn-info w-100"
                 >
-                  <i className="bi bi bi-columns-gap me-2"></i>
-                  Add to Compare
+                  <i className="bi bi-columns-gap me-2"></i>
+                  Add Compare
                 </button>
               )}
             </div>
