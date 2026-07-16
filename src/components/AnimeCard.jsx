@@ -2,10 +2,14 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { FavoritesContext } from '../context/FavoritesContext';
 import RatingStars from './RatingStars';
+import { CompareContext } from '../context/CompareContext';
 
 function AnimeCard({ anime }) {
   const { favoriteIds, addToFavorite, removeFavorite, isFavorite } =
     useContext(FavoritesContext);
+
+    const 
+
 
   return (
     <div className="col-12 col-md-6 col-lg-4">
