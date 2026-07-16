@@ -25,7 +25,7 @@ function Favorites() {
     }
 
     getAnime();
-  }, [favoriteIds]);
+  }, []);
 
   if (favoriteIds.length === 0) {
     return (

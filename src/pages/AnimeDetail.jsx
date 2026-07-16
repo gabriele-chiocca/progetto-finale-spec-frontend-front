@@ -7,6 +7,7 @@ import RatingStars from '../components/RatingStars';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { FavoritesContext } from '../context/FavoritesContext';
+import { useNavigate } from 'react-router-dom';
 
 function AnimeDetail() {
   const [anime, setAnime] = useState(null);
@@ -15,6 +16,8 @@ function AnimeDetail() {
   const { id } = useParams();
   const { favoriteIds, addToFavorite, removeFavorite, isFavorite } =
     useContext(FavoritesContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadAnime() {
@@ -43,9 +46,13 @@ function AnimeDetail() {
   return (
     <div className="container py-4">
       <div>
-        <Link className="h6 text-primary" to={'/'}>
-          <i className="bi bi-arrow-left-short h2"></i>
-        </Link>
+        <button
+          //Permette di tornare indietro sempre alla pagina precedente dell'ingresso al detail
+          onClick={() => navigate(-1)}
+          className="btn btn-white shadow-none"
+        >
+          <i className="bi h2 bi-arrow-left-short "></i>
+        </button>
 
         <div>
           <h1>{anime.title}</h1>
