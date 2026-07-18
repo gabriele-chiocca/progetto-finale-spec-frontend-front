@@ -9,6 +9,8 @@ import { useContext } from 'react';
 import { FavoritesContext } from '../context/FavoritesContext';
 import { useNavigate } from 'react-router-dom';
 
+import { CompareContext } from '../context/CompareContext';
+
 function AnimeDetail() {
   const [anime, setAnime] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -16,6 +18,9 @@ function AnimeDetail() {
   const { id } = useParams();
   const { favoriteIds, addToFavorite, removeFavorite, isFavorite } =
     useContext(FavoritesContext);
+
+  const { compareIds, addToCompare, removeCompare, isCompared } =
+    useContext(CompareContext);
 
   const navigate = useNavigate();
 
@@ -123,10 +128,23 @@ function AnimeDetail() {
                     </button>
                   )}
 
-                  <button className="btn btn-info ms-2">
-                    <i className="bi bi-columns-gap me-2"></i>
-                    Compare
-                  </button>
+                  {isCompared(anime.id) ? (
+                    <button
+                      onClick={() => removeCompare(anime.id)}
+                      className="btn btn-danger"
+                    >
+                      <i className=" bi bi-columns-gap me-2"></i>
+                      Remove Compare
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => addToCompare(anime.id)}
+                      className="btn btn-info "
+                    >
+                      <i className="bi bi-columns-gap me-2"></i>
+                      Add Compare
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
