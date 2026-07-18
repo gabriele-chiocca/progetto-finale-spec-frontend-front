@@ -123,7 +123,7 @@ function AnimeDetail() {
                     </button>
                   )}
 
-                  <button className="btn btn-secondary ms-2">
+                  <button className="btn btn-info ms-2">
                     <i className="bi bi-columns-gap me-2"></i>
                     Compare
                   </button>
