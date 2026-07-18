@@ -33,3 +33,8 @@
   object-fit: cover;
   width: 100%;
 }
+
+.compare-img {
+  height: 350px;
+  object-fit: cover;
+}

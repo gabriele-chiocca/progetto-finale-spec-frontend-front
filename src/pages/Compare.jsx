@@ -32,6 +32,14 @@ function Compare() {
     return compareIds.includes(anime.id);
   });
 
+  if (error) {
+    return <p className="text-danger text-center mt-4">{error}</p>;
+  }
+
+  if (animes.length === 0) {
+    return <p className="text-center mt-4">Loading...</p>;
+  }
+
   if (compareIds.length === 0) {
     return (
       <div className="container">
@@ -50,19 +58,19 @@ function Compare() {
     <div className="container py-4">
       <h1 className="text-center mb-4">Compare Anime</h1>
 
-      <div className="row g-4">
+      <div className="row g-4 justify-content-center">
         <div className="col-12 col-lg-6">
-          <CompareCard anime={comparedAnimes[0]} />
+          <CompareCard onRemove={removeCompare} anime={comparedAnimes[0]} />
         </div>
 
         <div className="col-12 col-lg-6">
           {comparedAnimes[1] ? (
-            <CompareCard anime={comparedAnimes[0]} />
+            <CompareCard anime={comparedAnimes[1]} />
           ) : (
-            <div className="card">
-              <div className="card-body">
+            <div className="card h-100">
+              <div className="card-body d-flex flex-column justify-content-center align-items-center text-center">
                 <h3>Select an anime to compare</h3>
-                <Link className="btn btn-primary" to={'/'}>
+                <Link className="btn btn-primary mt-3" to={'/'}>
                   Choose Anime to Compare
                 </Link>
               </div>

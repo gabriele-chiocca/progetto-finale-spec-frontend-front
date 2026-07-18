@@ -1,10 +1,14 @@
 import RatingStars from './RatingStars';
 
-function CompareCard({ anime }) {
+function CompareCard({ anime, onRemove }) {
+  if (!anime) {
+    return null;
+  }
+
   return (
     <div className="card h-100 pb-2">
       <img
-        className="card-img-top product-img"
+        className="card-img-top compare-img"
         src={anime.image}
         alt={anime.title}
       />
@@ -37,6 +41,16 @@ function CompareCard({ anime }) {
         <div className="mb-3">
           <p className="fw-bold mb-1">Studio</p>
           <p>{anime.studio}</p>
+        </div>
+
+        <div>
+          <button
+            onClick={() => onRemove(anime.id)}
+            className="btn btn-danger w-100"
+          >
+            <i className=" bi bi-columns-gap me-2"></i>
+            Remove Compare
+          </button>
         </div>
       </div>
     </div>
