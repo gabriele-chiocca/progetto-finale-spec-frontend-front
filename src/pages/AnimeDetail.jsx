@@ -24,6 +24,8 @@ function AnimeDetail() {
 
   const navigate = useNavigate();
 
+  const compareIsFull = compareIds.length >= 2;
+
   useEffect(() => {
     async function loadAnime() {
       try {
@@ -139,10 +141,13 @@ function AnimeDetail() {
                   ) : (
                     <button
                       onClick={() => addToCompare(anime.id)}
-                      className="btn btn-info "
+                      className={
+                        compareIsFull ? 'btn btn-secondary' : 'btn btn-info'
+                      }
+                      disabled={compareIsFull}
                     >
                       <i className="bi bi-columns-gap me-2"></i>
-                      Add Compare
+                      {compareIsFull ? 'Compare Full' : 'Add Compare'}
                     </button>
                   )}
                 </div>

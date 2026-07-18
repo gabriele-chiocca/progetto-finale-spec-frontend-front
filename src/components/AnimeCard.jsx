@@ -11,6 +11,10 @@ function AnimeCard({ anime }) {
   const { compareIds, addToCompare, removeCompare, isCompared } =
     useContext(CompareContext);
 
+  const animeIsCompared = isCompared(anime.id);
+
+  const compareIsFull = compareIds.length >= 2;
+
   return (
     <div className="col-12 col-md-6 col-lg-4">
       <div className="card h-100 pb-2">
@@ -55,7 +59,7 @@ function AnimeCard({ anime }) {
             </div>
 
             <div className="col-6">
-              {isCompared(anime.id) ? (
+              {animeIsCompared ? (
                 <button
                   onClick={() => removeCompare(anime.id)}
                   className="btn btn-danger w-100"
@@ -66,10 +70,15 @@ function AnimeCard({ anime }) {
               ) : (
                 <button
                   onClick={() => addToCompare(anime.id)}
-                  className="btn btn-info w-100"
+                  className={
+                    compareIsFull
+                      ? 'btn btn-secondary w-100'
+                      : 'btn btn-info w-100'
+                  }
+                  disabled={compareIsFull}
                 >
                   <i className="bi bi-columns-gap me-2"></i>
-                  Add Compare
+                  {compareIsFull ? 'Compare Full' : 'Add Compare'}
                 </button>
               )}
             </div>
