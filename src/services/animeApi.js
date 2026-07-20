@@ -1,5 +1,6 @@
 const API_URL = 'http://localhost:3001';
 
+//Lista sintetica di dati con id, titolo e categoria
 export async function getAnimes() {
   const response = await fetch(`${API_URL}/animes`);
 
@@ -22,6 +23,7 @@ export async function getAnimesById(id) {
   return data.anime;
 }
 
+//Restituisce tutti i detagli relativi ad ogni anime
 export async function getAllAnimeDetails() {
   const animeList = await getAnimes();
 
